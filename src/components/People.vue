@@ -1,6 +1,6 @@
 <template>
-  <div class="people">
-    <div v-for="person in people" v-bind:key="person.id">
+  <div class="list">
+    <div v-for="person in orderedPeople" v-bind:key="person.id">
       <div class="list__name" @click="showDescription">
         <h3>{{ person.name }}</h3>
         <Description
@@ -21,6 +21,7 @@
 import Vue from "vue";
 import axios from "axios";
 import VueAxios from "vue-axios";
+import _ from 'lodash';
 
 import Description from "./Description";
 
@@ -40,7 +41,13 @@ export default {
       },
     };
   },
-  mounted() {
+  /*ORDENO ALFABÉTICAMENTE CON UNA COMPUTED PROPERTY*/
+  computed:{
+      orderedPeople: function(){
+          return _.orderBy(this.people, 'name')
+      }
+  },
+  created() {
     axios
       .get("https://swapi.dev/api/people")
       .then((response) => {

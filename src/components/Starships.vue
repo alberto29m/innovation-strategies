@@ -1,6 +1,6 @@
 <template>
-  <div class="starships">
-    <div v-for="ship in starships" v-bind:key="ship.id">
+  <div class="list">
+    <div v-for="ship in orderedStaships" v-bind:key="ship.id">
       <div class="list__name" @click="showDescription">
         <h3>{{ ship.name }}</h3>
         <Descriptionstars
@@ -40,7 +40,16 @@ export default {
       },
     };
   },
-  mounted() {
+
+/*ORDENO ALFABÉTICAMENTE CON UNA COMPUTED PROPERTY*/
+  computed:{
+      orderedStaships: function(){
+          return _.orderBy(this.starships, 'name')
+      }
+  },
+  
+  /*LLAMADA A LA API*/
+  created() {
     axios
       .get("https://swapi.dev/api/starships/")
       .then((response) => {
@@ -52,6 +61,8 @@ export default {
         this.errored = true;
       });
   },
+
+/*FUNCIÓN PARA ENSEÑAR EL COMPONENTE DESCRIPCIÓN WHEN CLICK */
   methods: {
     showDescription: function (e) {
       console.log(e.target);

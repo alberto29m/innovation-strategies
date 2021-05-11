@@ -72,6 +72,12 @@ export default {
 }
 
 /*LIST STYLES IN COMMON*/
+.list{
+    max-height: 60vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
 .list__name.show{
   display: flex;
   justify-content: center;
@@ -110,8 +116,24 @@ export default {
     font-size: 3rem;
     padding: 3vh 1vh;
   }
+  .list__name.show{
+    flex-direction: column;
+  }
+  .list__description{
+    text-align: center;
+    padding-left: 0;
+  }
   .list__name {
     font-size: 1.4rem;
+  }
+  .go-back{
+    bottom: 0vh;
+  }
+  .go-back span{
+    font-size: 3rem;
+  }
+  .go-back p{
+    display: none;
   }
 }
 
