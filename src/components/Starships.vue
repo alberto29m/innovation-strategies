@@ -1,0 +1,76 @@
+<template>
+  <div class="starships">
+    <div v-for="ship in starships">
+      <div class="list__name" @click="showDescription">
+        <h3>{{ ship.name }}</h3>
+        <Descriptionstars
+          class="list__description"
+          style="display: none"
+          :description="ship"
+        ></Descriptionstars>
+      </div>
+    </div>
+    <router-link class="go-back" to="/home">
+      <span>&#8617;</span>
+      <p>Go back</p>
+    </router-link>
+  </div>
+</template>
+
+<script>
+import Vue from "vue";
+import axios from "axios";
+import VueAxios from "vue-axios";
+
+import Descriptionstars from "./Descriptionstars";
+
+Vue.use(VueAxios, axios);
+
+export default {
+  name: "Starships",
+  component: {
+    Descriptionstars,
+  },
+  data() {
+    return {
+      starships: null,
+      description: {
+        type: Object,
+        required: true,
+      },
+    };
+  },
+  mounted() {
+    axios
+      .get("https://swapi.dev/api/starships/")
+      .then((response) => {
+        this.starships = response.data.results;
+        console.log(this.starships);
+      })
+      .catch((error) => {
+        console.log(error);
+        this.errored = true;
+      });
+  },
+  methods: {
+    showDescription: function (e) {
+      console.log(e.target);
+      const element = e.target;
+      const nextElement = element.nextSibling.nextElementSibling;
+      console.log(nextElement);
+
+      if (nextElement.style.display === "none") {
+        element.parentNode.classList.add("show");
+        nextElement.style.display = "block";
+      } else {
+        nextElement.style.display = "none";
+        element.parentNode.classList.remove("show");
+      }
+      e.preventDefault();
+    },
+  },
+};
+</script>
+
+<style scoped>
+</style>
