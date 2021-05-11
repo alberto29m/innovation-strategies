@@ -1,6 +1,6 @@
 <template>
   <div class="starships">
-    <div v-for="ship in starships">
+    <div v-for="ship in starships" v-bind:key="ship.id">
       <div class="list__name" @click="showDescription">
         <h3>{{ ship.name }}</h3>
         <Descriptionstars
@@ -28,8 +28,8 @@ Vue.use(VueAxios, axios);
 
 export default {
   name: "Starships",
-  component: {
-    Descriptionstars,
+  components: {
+    Descriptionstars
   },
   data() {
     return {
@@ -67,8 +67,8 @@ export default {
         element.parentNode.classList.remove("show");
       }
       e.preventDefault();
-    },
-  },
+    }
+  }
 };
 </script>
 

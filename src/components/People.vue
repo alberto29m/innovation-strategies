@@ -1,6 +1,6 @@
 <template>
   <div class="people">
-    <div v-for="person in people">
+    <div v-for="person in people" v-bind:key="person.id">
       <div class="list__name" @click="showDescription">
         <h3>{{ person.name }}</h3>
         <Description

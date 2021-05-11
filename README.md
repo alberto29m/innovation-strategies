@@ -1,21 +1,15 @@
-# innovation-strategies
+Creo la estructura del proyecto con Vue CLI y webpack.
 
-> A Vue.js project
+Creo el repositorio de github y hago un push de los archivos dentro.
 
-## Build Setup
+Borro la estructura por defecto.
 
-``` bash
-# install dependencies
-npm install
+Miro la organización de la API y pienso en la estructura de componentes que puedo seguir.
 
-# serve with hot reload at localhost:8080
-npm run dev
+Instalo axios con npm para la llamada a la API.
 
-# build for production with minification
-npm run build
+Empiezo creando el componente Home.vue desde el que partirán el resto.
 
-# build for production and view the bundle analyzer report
-npm run build --report
-```
+Utilizando VueRouter voy enlazando los botones con los diferentes componentes en los que llamo a la API según sus características.
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+Voy acompañando todo el proceso con una maquetación sencilla.
